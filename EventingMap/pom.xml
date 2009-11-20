@@ -1,0 +1,111 @@
+<!--
+  CDDL HEADER START
+  The contents of this file are subject to the terms
+  of the Common Development and Distribution License
+  (the License). You may not use this file except in
+  compliance with the License.
+
+  You can obtain a copy of the License at
+  http://www.sun.com/cddl/cddl.html and legal/CDDLv1.0.txt
+  See the License for the specific language governing
+  permission and limitations under the License.
+
+  When distributing Covered Code, include this CDDL
+  Header Notice in each file and include the License file
+  at legal/CDDLv1.0.txt.
+  If applicable, add the following below the CDDL Header,
+  with the fields enclosed by brackets [] replaced by
+  your own identifying information:
+  "Portions Copyrighted [year] [name of copyright owner]"
+
+  Copyright 2006 Sun Microsystems Inc. All Rights Reserved
+  CDDL HEADER END
+-->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.sun.portal.portlet</groupId>
+    <artifactId>EventingMap</artifactId>
+    <packaging>war</packaging>
+    <version>1.0</version>
+    <name>Portlet 2.0 Eventing Sample</name>
+    
+    <!--  The Java Blueprints build structure -->
+    <build>
+        <directory>dist</directory>
+        <outputDirectory>build/classes</outputDirectory>
+        <sourceDirectory>src/java</sourceDirectory>
+        <finalName>${artifactId}</finalName>
+        <resources>
+            <resource>
+                <directory>resources</directory>
+                <filtering>false</filtering>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.5</source>
+                    <target>1.5</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.0.1</version>
+                <configuration>
+                    <warSourceDirectory>web</warSourceDirectory>
+                    <archiveClasses>true</archiveClasses>
+                    <webResources>
+                        <resource>
+                            <directory>${basedir}</directory>
+                            <includes>
+                                <include>CDDLv1.0.txt</include>
+                            </includes>
+                        </resource>
+                    </webResources>                
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+    
+    <repositories>
+        <repository>
+            <id>maven1</id>
+            <name>Maven1 java.net Repository</name>
+            <url>http://download.java.net/maven/1</url>
+            <layout>legacy</layout>
+        </repository>
+        <repository>
+            <id>maven2</id>
+            <name>Maven2 java.net Repositoryd</name>
+            <url>http://repo1.maven.org/maven2</url>
+        </repository>
+        <repository>
+            <id>portal-repository.dev.java.net</id>
+            <name>Portal Repository in Java.net</name>
+            <url>https://portal.dev.java.net/nonav/repository</url>
+        </repository>
+    </repositories>
+    
+    <!-- All Global dependencies are defined here -->
+    <dependencies>
+        <!-- Java EE 5.0 (for JAXB 2.0) -->
+        <dependency>
+            <groupId>javaee</groupId>
+            <artifactId>javaee-api</artifactId>
+            <version>5</version>
+            <scope>provided</scope>
+        </dependency>
+        
+        <!-- Portlet API 2.0-public review draft-->        
+        <dependency>
+            <groupId>javax.portlet</groupId>
+            <artifactId>portlet-api</artifactId>
+            <version>2.0-draft19</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+</project>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE display PUBLIC "-//Liferay//DTD Display 5.1.0//EN" "http://www.liferay.com/dtd/liferay-display_5_1_0.dtd">
+
+<display>
+	<category name="category.sample">
+		<portlet id="ContinentPortlet"></portlet>
+		<portlet id="ContinentMapPortlet"></portlet>
+		<portlet id="ContinentInfoPortlet"></portlet>
+	</category>
+</display>
