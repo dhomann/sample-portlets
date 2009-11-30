@@ -22,7 +22,7 @@
  --%>
 <%@page import="javax.portlet.*,java.util.*"%>
 <%@ page session="false" %>
-<%@ taglib uri="http://java.sun.com/portlet" prefix="portlet"%>
+<%@ taglib uri="http://java.sun.com/portlet_2_0" prefix="portlet" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <portlet:defineObjects />
 <fmt:setBundle basename="ContinentMapPortlet" />
@@ -30,6 +30,8 @@
 String continentName = request.getParameter("continentName");
 if ((continentName == null) || (continentName.length()==0)){%>
 <p><b><fmt:message key="clickMap"/></b></p>
-<%} else {%>
-<img src='<%=request.getContextPath()+"/"+continentName+".jpg"%>'>
+<%} else {
+ResourceURL continentUrl = renderResponse.createResourceURL();
+continentUrl.setResourceID(continentName + ".jpg");
+%><img src='<%=renderResponse.encodeURL(continentUrl.toString())%>'>
 <% } %>

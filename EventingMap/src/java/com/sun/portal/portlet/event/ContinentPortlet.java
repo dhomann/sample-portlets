@@ -22,16 +22,10 @@
  */
 package com.sun.portal.portlet.event;
 
-import java.util.ResourceBundle;
-import javax.portlet.GenericPortlet;
-import javax.portlet.ActionRequest;
-import javax.portlet.RenderRequest;
-import javax.portlet.ActionResponse;
-import javax.portlet.RenderResponse;
-import javax.portlet.PortletException;
-import java.io.IOException;
-import javax.portlet.PortletRequestDispatcher;
+import javax.portlet.*;
 import javax.xml.namespace.QName;
+import java.io.IOException;
+import java.util.ResourceBundle;
 
 public class ContinentPortlet extends GenericPortlet {
     
@@ -49,14 +43,17 @@ public class ContinentPortlet extends GenericPortlet {
     
     public void doView(RenderRequest request,RenderResponse response) throws PortletException,IOException {
         response.setContentType("text/html");
-      
+
         PortletRequestDispatcher dispatcher =
                 getPortletContext().getRequestDispatcher("/WEB-INF/jsp/ContinentPortlet_view.jsp");
         dispatcher.include(request, response);
     }
-    
-  
-    
+
+    @Override
+    public void serveResource(ResourceRequest request, ResourceResponse response) throws PortletException, IOException {
+        ResourceHelper.deliverResource(response, "/" + request.getResourceID(), "image/jpeg");
+    }
+
     public void doHelp(RenderRequest request, RenderResponse response) throws PortletException,IOException {
         
         response.setContentType("text/html");

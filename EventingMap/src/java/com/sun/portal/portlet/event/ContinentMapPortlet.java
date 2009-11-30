@@ -22,15 +22,8 @@
  */
 package com.sun.portal.portlet.event;
 
-import javax.portlet.GenericPortlet;
-import javax.portlet.RenderRequest;
-import javax.portlet.RenderResponse;
-import javax.portlet.PortletException;
+import javax.portlet.*;
 import java.io.IOException;
-import javax.portlet.EventRequest;
-import javax.portlet.EventResponse;
-import javax.portlet.Event;
-import javax.portlet.PortletRequestDispatcher;
 
 public class ContinentMapPortlet extends GenericPortlet {
     
@@ -50,6 +43,11 @@ public class ContinentMapPortlet extends GenericPortlet {
         dispatcher.include(request, response);
     }
     
+    @Override
+    public void serveResource(ResourceRequest request, ResourceResponse response) throws PortletException, IOException {
+        ResourceHelper.deliverResource(response, "/" + request.getResourceID(), "image/jpeg");
+    }
+
     public void doHelp(RenderRequest request, RenderResponse response) throws PortletException,IOException {
         
         response.setContentType("text/html");
