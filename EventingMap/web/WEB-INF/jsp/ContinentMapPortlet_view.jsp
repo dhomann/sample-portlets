@@ -20,7 +20,6 @@
  
   Copyright 2007 Sun Microsystems, Inc. All rights reserved.
  --%>
-<%@page import="javax.portlet.*,java.util.*"%>
 <%@ page session="false" %>
 <%@ taglib uri="http://java.sun.com/portlet_2_0" prefix="portlet" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
@@ -31,7 +30,5 @@ String continentName = request.getParameter("continentName");
 if ((continentName == null) || (continentName.length()==0)){%>
 <p><b><fmt:message key="clickMap"/></b></p>
 <%} else {
-ResourceURL continentUrl = renderResponse.createResourceURL();
-continentUrl.setResourceID(continentName + ".jpg");
-%><img src='<%=renderResponse.encodeURL(continentUrl.toString())%>'>
+%><img src='<%=renderResponse.encodeURL(String.format("%s/%s.jpg", request.getContextPath(), continentName))%>'>
 <% } %>

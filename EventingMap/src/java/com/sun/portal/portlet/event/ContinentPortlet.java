@@ -49,11 +49,6 @@ public class ContinentPortlet extends GenericPortlet {
         dispatcher.include(request, response);
     }
 
-    @Override
-    public void serveResource(ResourceRequest request, ResourceResponse response) throws PortletException, IOException {
-        ResourceHelper.deliverResource(response, "/" + request.getResourceID(), "image/jpeg");
-    }
-
     public void doHelp(RenderRequest request, RenderResponse response) throws PortletException,IOException {
         
         response.setContentType("text/html");
